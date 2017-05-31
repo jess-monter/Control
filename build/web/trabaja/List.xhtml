@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTrabajaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTrabajaEmpty}" rendered="#{trabajaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{trabajaController.items.rowCount > 0}">
+                    <h:outputText value="#{trabajaController.pagination.pageFirstItem + 1}..#{trabajaController.pagination.pageLastItem + 1}/#{trabajaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{trabajaController.previous}" value="#{bundle.Previous} #{trabajaController.pagination.pageSize}" rendered="#{trabajaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{trabajaController.next}" value="#{bundle.Next} #{trabajaController.pagination.pageSize}" rendered="#{trabajaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{trabajaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTrabajaTitle_idNum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNum}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTrabajaTitle_fechaIngreso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaIngreso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTrabajaTitle_salario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.salario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTrabajaTitle_empleado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empleado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTrabajaTitle_empresa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empresa}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{trabajaController.prepareView}" value="#{bundle.ListTrabajaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{trabajaController.prepareEdit}" value="#{bundle.ListTrabajaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{trabajaController.destroy}" value="#{bundle.ListTrabajaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{trabajaController.prepareCreate}" value="#{bundle.ListTrabajaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTrabajaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListColaboraTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListColaboraEmpty}" rendered="#{colaboraController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{colaboraController.items.rowCount > 0}">
+                    <h:outputText value="#{colaboraController.pagination.pageFirstItem + 1}..#{colaboraController.pagination.pageLastItem + 1}/#{colaboraController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{colaboraController.previous}" value="#{bundle.Previous} #{colaboraController.pagination.pageSize}" rendered="#{colaboraController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{colaboraController.next}" value="#{bundle.Next} #{colaboraController.pagination.pageSize}" rendered="#{colaboraController.pagination.hasNextPage}"/>&nbsp;
+                    <p:dataTable value="#{colaboraController.items}" var="item"  style="border:solid 1px">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColaboraTitle_idNum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNum}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColaboraTitle_fechaInicio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicio}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColaboraTitle_fechaFin}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFin}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColaboraTitle_numHoras}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numHoras}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColaboraTitle_empleado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.empleado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListColaboraTitle_proyecto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proyecto}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{colaboraController.prepareView}" value="#{bundle.ListColaboraViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{colaboraController.prepareEdit}" value="#{bundle.ListColaboraEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{colaboraController.destroy}" value="#{bundle.ListColaboraDestroyLink}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{colaboraController.prepareCreate}" value="#{bundle.ListColaboraCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListColaboraIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEmpresaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_idNum}" for="idNum" />
+                    <h:inputText id="idNum" value="#{empresaController.selected.idNum}" title="#{bundle.EditEmpresaTitle_idNum}" required="true" requiredMessage="#{bundle.EditEmpresaRequiredMessage_idNum}"/>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_rfc}" for="rfc" />
+                    <h:inputText id="rfc" value="#{empresaController.selected.rfc}" title="#{bundle.EditEmpresaTitle_rfc}" required="true" requiredMessage="#{bundle.EditEmpresaRequiredMessage_rfc}"/>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_razonSocial}" for="razonSocial" />
+                    <h:inputText id="razonSocial" value="#{empresaController.selected.razonSocial}" title="#{bundle.EditEmpresaTitle_razonSocial}" required="true" requiredMessage="#{bundle.EditEmpresaRequiredMessage_razonSocial}"/>
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_calle}" for="calle" />
+                    <h:inputText id="calle" value="#{empresaController.selected.calle}" title="#{bundle.EditEmpresaTitle_calle}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_num}" for="num" />
+                    <h:inputText id="num" value="#{empresaController.selected.num}" title="#{bundle.EditEmpresaTitle_num}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_ciudad}" for="ciudad" />
+                    <h:inputText id="ciudad" value="#{empresaController.selected.ciudad}" title="#{bundle.EditEmpresaTitle_ciudad}" />
+                    <h:outputLabel value="#{bundle.EditEmpresaLabel_cp}" for="cp" />
+                    <h:inputText id="cp" value="#{empresaController.selected.cp}" title="#{bundle.EditEmpresaTitle_cp}" />
+                </h:panelGrid>
+                <h:commandLink action="#{empresaController.update}" value="#{bundle.EditEmpresaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditEmpresaViewLink}"/>
+                <br />
+                <h:commandLink action="#{empresaController.prepareList}" value="#{bundle.EditEmpresaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditEmpresaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

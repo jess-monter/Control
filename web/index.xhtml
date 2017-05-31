@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <!--<h:outputStylesheet name="css/jsfcrud.css"/>-->
+    </h:head>
+    
+    <h:form>     
+        <p:growl id="messages" showDetail="true" />
+        <p:toolbar>
+            <f:facet name="left">
+                <marquee>Control</marquee>
+            </f:facet>
+             <f:facet name="right">
+            </f:facet>
+         </p:toolbar>
+    </h:form>
+    <h:body>
+        <p:layout style="min-width:400px;min-height:200px;">
+            <p:layoutUnit position="center">
+                <h:link outcome="/colabora/List" value="Muestra Colabora"/>
+                <br />
+                <h:link outcome="/dirige/List" value="Muestra Dirige"/>
+                <br />
+                <h:link outcome="/empleado/List" value="Muestra Empleado"/>
+                <br />
+                <h:link outcome="/empresa/List" value="Muestra Empresa"/>
+                <br />
+                <h:link outcome="/proyecto/List" value="Muestra Proyecto"/>
+                <br />
+                <h:link outcome="/trabaja/List" value="Muestra Trabaja"/>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+
